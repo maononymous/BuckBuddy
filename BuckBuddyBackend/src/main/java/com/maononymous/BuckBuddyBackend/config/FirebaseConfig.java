@@ -1,4 +1,4 @@
-package com.buckbuddy.config;
+package com.maononymous.BuckBuddyBackend.config;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
