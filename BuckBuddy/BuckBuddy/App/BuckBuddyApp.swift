@@ -10,13 +10,20 @@ import Firebase
 
 @main
 struct BuckBuddyApp: App {
+    
+    @State private var isLoggedIn: Bool = false
+    
     init() {
         FirebaseApp.configure()
     }
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isLoggedIn {
+                ContentView()
+            } else {
+                LoginView(isLoggedIn: $isLoggedIn)
+            }
         }
     }
 }
