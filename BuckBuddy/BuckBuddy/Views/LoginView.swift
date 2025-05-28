@@ -16,8 +16,88 @@ struct LoginView: View {
     @State private var showSignUp: Bool = false
     @Binding var isLoggedIn: Bool
     
+    @State private var circleScale: CGFloat = 10
+    @State private var navigate = false
+    @State private var hideVStack = true
+    
     var body: some View {
         
+        ZStack {
+            formView
+            
+            circleView
+            .fullScreenCover(isPresented: $navigate) {
+                SignupView(isLoggedIn: $isLoggedIn)
+            }
+            .transaction { transaction in
+                transaction.disablesAnimations = true
+            }
+        }
+        .onAppear {
+            // Reverse animation when view appears
+            withAnimation(.easeInOut(duration: 0.74)) {
+                circleScale = 1.0
+            }
+            withAnimation(.easeInOut(duration: 0.25).delay(0.74)) {
+                hideVStack = false
+            }
+        }
+        
+    }
+    
+    private var circleView: some View {
+        ZStack(alignment: .bottomTrailing) {
+            Color.white.opacity(0)
+                .ignoresSafeArea()
+            
+            Circle()
+                .fill(Color.teal)
+                .frame(width: 300, height: 300)
+                .padding(.bottom, -87)
+                .padding(.trailing, -87)
+                .scaleEffect(circleScale)
+                .ignoresSafeArea()
+            
+            if !hideVStack {
+                VStack(alignment: .trailing) {
+                    Text("Don't have an account?")
+                        .font(.headline)
+                        .bold()
+                    
+                    Button(action: {
+                        // Hide VStack
+                        withAnimation(.easeInOut(duration: 0.25)) {
+                            hideVStack = true
+                        }
+                        
+                        // Animate circle scaling
+                        withAnimation(.easeInOut(duration: 0.74).delay(0.2)) {
+                            circleScale = 10
+                            
+                        }
+                        
+                        // Navigate after animation delay
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.94) {
+                            navigate = true
+                        }
+                        
+                    }, label: {
+                        Text("Sign Up")
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .foregroundColor(.teal)
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 32)
+                            .background(RoundedRectangle(cornerRadius: 8).fill(Color.white.opacity(0.8)))
+                    })
+                }
+                .padding(.bottom, 45)
+                .padding(.trailing, 10)
+            }
+        }
+    }
+    
+    private var formView: some View {
         VStack {
             
             HStack {
@@ -98,29 +178,9 @@ struct LoginView: View {
                     .font(.callout)
                     .padding(.vertical, 4)
             }
-            
-            HStack {
-                Text("Don't have an account?")
-                    .font(.caption)
-                Button(action: {
-                    showSignUp = true
-                }) {
-                    Text("Sign Up")
-                        .font(.caption)
-                        .fontWeight(.bold)
-                }
-                .sheet(isPresented: $showSignUp) {
-                    SignupView(isLoggedIn: $isLoggedIn)
-                }
-            }
 
             Spacer()
-            
-            Text("BuckBuddy © 2025 All rights reserved.")
-                .font(.caption2)
-                .foregroundColor(.gray)
         }
-        
     }
 }
 
