@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE99EDDE2DE6CFD90050646A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = AE99EDDD2DE6CFD90050646A /* FirebaseStorage */; };
 		AEA3C4052DD58B710006E16B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = AEA3C4042DD58B710006E16B /* FirebaseAuth */; };
 		AEA3C4072DD58B710006E16B /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = AEA3C4062DD58B710006E16B /* FirebaseCore */; };
 		AEA3C4092DD58B710006E16B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = AEA3C4082DD58B710006E16B /* FirebaseFirestore */; };
@@ -30,6 +31,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEA3C4072DD58B710006E16B /* FirebaseCore in Frameworks */,
+				AE99EDDE2DE6CFD90050646A /* FirebaseStorage in Frameworks */,
 				AEA3C4052DD58B710006E16B /* FirebaseAuth in Frameworks */,
 				AEA3C4092DD58B710006E16B /* FirebaseFirestore in Frameworks */,
 			);
@@ -77,6 +79,7 @@
 				AEA3C4042DD58B710006E16B /* FirebaseAuth */,
 				AEA3C4062DD58B710006E16B /* FirebaseCore */,
 				AEA3C4082DD58B710006E16B /* FirebaseFirestore */,
+				AE99EDDD2DE6CFD90050646A /* FirebaseStorage */,
 			);
 			productName = BuckBuddy;
 			productReference = AEA3C3F32DD588C90006E16B /* BuckBuddy.app */;
@@ -352,6 +355,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AE99EDDD2DE6CFD90050646A /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AEA3C4032DD58B710006E16B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
 		AEA3C4042DD58B710006E16B /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AEA3C4032DD58B710006E16B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
