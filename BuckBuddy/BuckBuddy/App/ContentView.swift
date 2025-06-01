@@ -9,16 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "atom")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Welcome to React!")
-        }
-        .padding()
+        HomeView()
     }
-}
-
-#Preview {
-    ContentView()
 }
